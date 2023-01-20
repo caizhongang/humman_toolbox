@@ -20,10 +20,8 @@ sensors, dynamic subjects, and computer vision-powered automatic annotations.
 
 - Part 1: [Aliyun](https://openxdlab.oss-cn-shanghai.aliyuncs.com/HuMMan/humman_release_v1.0_recon/recon_part_1.zip) 
 or [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/EY5YzfZkY3BFsUcnAEsAtl0Bb3s9E4xTzNjncBWAyxXpwQ?e=92xOu7) (~80 GB)
-
 - Part 2: [Aliyun](https://openxdlab.oss-cn-shanghai.aliyuncs.com/HuMMan/humman_release_v1.0_recon/recon_part_2.zip) 
 or [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/EZFK-Eykx7ZAgdydMQoqw7EBPZUNLHVIXT2SmTEZLw9VmA?e=oiZnpd) (~80 GB)
-
 - Part 3: [Aliyun](https://openxdlab.oss-cn-shanghai.aliyuncs.com/HuMMan/humman_release_v1.0_recon/recon_part_3.zip) 
 or [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/Ed59pXLm2DhMoj0rolBIfh8BYHKIX3uxuGeeThJ03GaRZQ?e=5hYSRA) (~80 GB)
 
