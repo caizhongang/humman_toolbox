@@ -22,14 +22,14 @@ sensors, dynamic subjects, and computer vision-powered automatic annotations.
 
 Color images, masks, SMPL parameters, and camera parameters:
 - Part 1: [Aliyun](https://openxdlab.oss-cn-shanghai.aliyuncs.com/HuMMan/humman_release_v1.0_recon/recon_part_1.zip) 
-or [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/EY5YzfZkY3BFsUcnAEsAtl0Bb3s9E4xTzNjncBWAyxXpwQ?e=92xOu7) (~81 GB)
+or [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/EY5YzfZkY3BFsUcnAEsAtl0Bb3s9E4xTzNjncBWAyxXpwQ?e=fBP6ZV) (~81 GB)
 - Part 2: [Aliyun](https://openxdlab.oss-cn-shanghai.aliyuncs.com/HuMMan/humman_release_v1.0_recon/recon_part_2.zip) 
-or [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/EZFK-Eykx7ZAgdydMQoqw7EBPZUNLHVIXT2SmTEZLw9VmA?e=oiZnpd) (~83 GB)
+or [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/EZFK-Eykx7ZAgdydMQoqw7EBPZUNLHVIXT2SmTEZLw9VmA?e=tvhj9q) (~83 GB)
 - Part 3: [Aliyun](https://openxdlab.oss-cn-shanghai.aliyuncs.com/HuMMan/humman_release_v1.0_recon/recon_part_3.zip) 
-or [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/Ed59pXLm2DhMoj0rolBIfh8BYHKIX3uxuGeeThJ03GaRZQ?e=5hYSRA) (~80 GB)
+or [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/Ed59pXLm2DhMoj0rolBIfh8BYHKIX3uxuGeeThJ03GaRZQ?e=zlHeaU) (~80 GB)
 
 Textured meshes: [Aliyun](https://openxdlab.oss-cn-shanghai.aliyuncs.com/HuMMan/humman_release_v1.0_recon/recon_textured_meshes.zip) 
-or [OneDrive(CN)]() (~22 GB)
+or [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/EYgbLNilus1Auut9N-qs5rkBZ-NuNYWG5ml-tRxTlgeohA?e=Sdaogm) (~22 GB)
 
 ### Data Structure
 Please download the .zip files and decompress them into the following file structure:
