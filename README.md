@@ -68,27 +68,56 @@ humman_release_v1.0_recon
         ├── xxxxxx.obj
         └── xxxxxx_0.png*
     
-*: may have multiple png
+```
+- \* indicates that there be multiple png for one .obj file.
+
+#### kinect_color/
+```python
+import cv2
+color_bgr = cv2.imread('/path/to/xxxxxxx.png')
+color_rgb = cv2.cvtColor(color_bgr, cv2.COLOR_BGR2RGB)  # if RGB images are used
+```
+
+#### kinect_mask/
+```python
+import cv2
+mask = cv2.imread('/path/to/xxxxxxx.png', cv2.IMREAD_GRAYSCALE)  # grayscale
 ```
 
 #### smpl_parms/
-```text
+SMPL parameters are in the world coordinate system.
+The world coordinate system is the same as kinect_color_000 coordinate system. 
 Each .npz consists of the following:
+```text
 {
     'betas': np.array of shape (10,),
     'body_pose': np.array of shape (69,),
     'global_orient': np.array of shape (3,),
     'transl': np.array of shape (3,)
 }
+```
 
-Note:
-SMPL parameters are in the world coordinate system.
-The world coordinate system is the same as kinect_color_000 coordinate system. 
+To read:
+```python
+import numpy as np
+smpl_params = np.load('/path/to/xxxxxx.npz')
+global_orient = smpl_params['global_orient']
+body_pose = smpl_params['body_pose']
+betas = smpl_params['betas']
+transl = smpl_params['transl']
 ```
 
 #### cameras.json
-```text
+Cameras use the OpenCV pinhole camera model.
+- K: intrinsic matrix
+- R: rotation matrix
+- T: translation vector
+
+R, T form world2cam transformation.
+The world coordinate system is the same as kinect_color_000 coordinate system. 
+
 Each .json consists of the following:
+```text
 {
     "kinect_color_000": {
         "K": np.array of shape (3,3),
@@ -98,13 +127,54 @@ Each .json consists of the following:
     ...
     "kinect_color_009": {...}
 }
-
-Note:
-Cameras use the OpenCV pinhole camera model.
-K: intrinsic matrix
-R: rotation matrix
-T: translation
-
-R, T form world2cam transformation.
-The world coordinate system is the same as kinect_color_000 coordinate system. 
 ```
+
+To read:
+```python
+import json
+with open('/path/to/cameras.json', 'r') as f:
+    cameras = json.load(f)
+camera_params = cameras['kinect_color_000']  # e.g., Kinect ID = 0
+K, R, T = camera_params['K'], camera_params['R'], camera_params['T']
+```
+
+### Visualization
+We provide a simple visualization tool for color images, masks, and SMPL vertices.
+
+#### Installation
+The tool does not require specific version of dependency packages. 
+The following is for reference only. 
+```bash
+conda create -n humman python=3.8 -y
+conda activate humman
+conda install pytorch==1.12.1 torchvision==0.13.1 torchaudio==0.12.1 cudatoolkit=11.6 -c pytorch -c conda-forge
+pip install opencv-python smplx
+```
+
+#### Run Visualizer
+```bash
+python tools/visualizer <root_dir> <seq_name> <kinect_id> <frame_id> \
+  [--visualize_mask] [--visualize_smpl] [--smpl_model_path]
+```
+- root_dir (str): root directory in which data is stored.
+- seq_name (str): sequence name, in the format 'pxxxxxx_axxxxxx'.
+- kinect_id (int): Kinect ID. Available range is [0, 9].
+- frame_id (int): frame ID. Available range varies for different sequences.
+- visualize_mask (bool, optional): whether to overlay mask on color image. Defaults to False.
+- visualize_smpl (bool, optional): whether to overlay SMPL vertices on color image. Defaults to False.
+- smpl_model_path (str, optional): directory in which SMPL body models are stored.
+
+Example:
+```bash
+python tools/visualizer /home/user/humman_release_v1.0_recon p000455_a000986 0 0 \
+  --visualize_mask --visualize_smpl --smpl_model_path /home/user/body_models/
+```
+
+Note that the SMPL model path should consists the following structure:
+```text
+body_models/   
+└── smpl  
+    └── SMPL_NEUTRAL.pkl
+```
+`SMPL_NEUTRAL.pkl` may be downloaded from [here](https://github.com/classner/up/blob/master/models/3D/basicModel_neutral_lbs_10_207_0_v1.0.0.pkl). 
+Renaming from `basicModel_neutral_lbs_10_207_0_v1.0.0.pkl` to `SMPL_NEUTRAL.pkl` is needed.
