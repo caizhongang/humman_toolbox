@@ -3,8 +3,10 @@
 Please visit our [Homepage](https://caizhongang.github.io/projects/HuMMan/) for more details.      
 
 ## Updates
-- [2023-01] Release of HuMMan v1.0: Reconstruction Subset
-- [2022-10] We presented HuMMan as an oral paper at ECCV'22 (Tel Aviv, Israel)
+- [2023-01-23] Release of textured meshes and a toolbox
+- [2023-01-23] Minor fixes on the mask data, download links have been updated
+- [2023-01-11] Release of HuMMan v1.0: Reconstruction Subset
+- [2022-10-27] We presented HuMMan as an oral paper at ECCV'22 (Tel Aviv, Israel)
 - [2022-08] Release of HuMMan v0.1 (no longer available, please use v1.0)
 
 ## HuMMan Release v1.0: Reconstruction Subset
@@ -18,37 +20,41 @@ sensors, dynamic subjects, and computer vision-powered automatic annotations.
 
 ### Downloads
 
+Color images, masks, SMPL parameters, and camera parameters:
 - Part 1: [Aliyun](https://openxdlab.oss-cn-shanghai.aliyuncs.com/HuMMan/humman_release_v1.0_recon/recon_part_1.zip) 
-or [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/EY5YzfZkY3BFsUcnAEsAtl0Bb3s9E4xTzNjncBWAyxXpwQ?e=92xOu7) (~80 GB)
+or [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/EY5YzfZkY3BFsUcnAEsAtl0Bb3s9E4xTzNjncBWAyxXpwQ?e=92xOu7) (~81 GB)
 - Part 2: [Aliyun](https://openxdlab.oss-cn-shanghai.aliyuncs.com/HuMMan/humman_release_v1.0_recon/recon_part_2.zip) 
-or [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/EZFK-Eykx7ZAgdydMQoqw7EBPZUNLHVIXT2SmTEZLw9VmA?e=oiZnpd) (~80 GB)
+or [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/EZFK-Eykx7ZAgdydMQoqw7EBPZUNLHVIXT2SmTEZLw9VmA?e=oiZnpd) (~83 GB)
 - Part 3: [Aliyun](https://openxdlab.oss-cn-shanghai.aliyuncs.com/HuMMan/humman_release_v1.0_recon/recon_part_3.zip) 
 or [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/Ed59pXLm2DhMoj0rolBIfh8BYHKIX3uxuGeeThJ03GaRZQ?e=5hYSRA) (~80 GB)
 
-### Data Structure
+Textured meshes: [Aliyun](https://openxdlab.oss-cn-shanghai.aliyuncs.com/HuMMan/humman_release_v1.0_recon/recon_textured_meshes.zip) 
+or [OneDrive(CN)]() (~22 GB)
 
+### Data Structure
+Please download the .zip files and decompress them into the following file structure:
 ```text
-humman_release_v1.0_recon   
-└── pxxxxxx_axxxxxx  
-    ├── kinect_color
-    │   ├── kinect_000
+humman_release_v1.0_recon/   
+└── pxxxxxx_axxxxxx/  
+    ├── kinect_color/
+    │   ├── kinect_000/
     │   ...
-    │   └── kinect_009
+    │   └── kinect_009/
     │       ├── 000000.png
     │       ├── 000006.png
     │       ...
     │       └── xxxxxx.png
     │
-    ├── kinect_mask
-    │   ├── kinect_000
+    ├── kinect_mask/
+    │   ├── kinect_000/
     │   ...
-    │   └── kinect_009
+    │   └── kinect_009/
     │       ├── 000000.png
     │       ├── 000006.png
     │       ...
     │       └── xxxxxx.png
     │
-    ├── smpl_params
+    ├── smpl_params/
     │   ├── 000000.npz
     │   ├── 000006.npz
     │   ...
@@ -56,7 +62,7 @@ humman_release_v1.0_recon
     │
     ├── cameras.json
     │
-    └── textured_meshes (optional)
+    └── textured_meshes/
         ├── 000000.mtl
         ├── 000000.obj
         ├── 000000_0.png*
@@ -69,7 +75,7 @@ humman_release_v1.0_recon
         └── xxxxxx_0.png*
     
 ```
-- \* indicates that there be multiple png for one .obj file.
+- \* indicates that there be multiple .png for one .obj file.
 
 #### kinect_color/
 ```python
@@ -147,7 +153,7 @@ The following is for reference only.
 ```bash
 conda create -n humman python=3.8 -y
 conda activate humman
-conda install pytorch==1.12.1 torchvision==0.13.1 torchaudio==0.12.1 cudatoolkit=11.6 -c pytorch -c conda-forge
+conda install pytorch==1.12.1 torchvision==0.13.1 torchaudio==0.12.1 cudatoolkit=11.6 -c pytorch -c conda-forge -y
 pip install opencv-python smplx
 ```
 
@@ -170,11 +176,25 @@ python tools/visualizer /home/user/humman_release_v1.0_recon p000455_a000986 0 0
   --visualize_mask --visualize_smpl --smpl_model_path /home/user/body_models/
 ```
 
-Note that the SMPL model path should consists the following structure:
+Note that the SMPL model path should consist the following structure:
 ```text
 body_models/   
-└── smpl  
+└── smpl/  
     └── SMPL_NEUTRAL.pkl
 ```
 `SMPL_NEUTRAL.pkl` may be downloaded from [here](https://github.com/classner/up/blob/master/models/3D/basicModel_neutral_lbs_10_207_0_v1.0.0.pkl). 
 Renaming from `basicModel_neutral_lbs_10_207_0_v1.0.0.pkl` to `SMPL_NEUTRAL.pkl` is needed.
+
+## Citation
+Please cite our work if you find our dataset and tools useful.
+```text
+@article{cai2022humman,
+    title={HuMMan: Multi-Modal 4D Human Dataset for Versatile Sensing and Modeling},
+    author={Cai, Zhongang and Ren, Daxuan and Zeng, Ailing and Lin, Zhengyu and Yu, Tao and Wang, Wenjia and
+            Fan, Xiangyu and Gao, Yang and Yu, Yifan and Pan, Liang and Hong, Fangzhou and Zhang, Mingyuan and
+            Loy, Chen Change and Yang, Lei and Liu, Ziwei},
+    booktitle={Proceedings of the European Conference on Computer Vision (ECCV)},
+    month = {October},
+    year={2022}
+}
+```
