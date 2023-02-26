@@ -12,16 +12,15 @@ except ImportError:
     print('smplx and torch are needed for visualization of SMPL vertices.')
 
 
-def perspective_projection(points, K, R, T):
-    """
+def transform_points(points, R, T):
+    """ Transform 3D points from world coordinate system to camera coordinate system
     Args:
         points (np.ndarray): 3D points in world coordinate system of shape (N, 3).
-        K (np.ndarray): camera intrinsic matrix of shape (3, 3).
         R (np.ndarray): world2cam rotation matrix of shape (3, 3).
         T (np.ndarray): world2cam translation vector of shape (3,).
 
     Returns:
-        proj_points (np.ndarray): 2D points of shape (N, 2).
+        transformed_points (np.ndarray): 3D points in camera coordiante system of shape (N, 2).
     """
     N = points.shape[0]
 
@@ -35,11 +34,26 @@ def perspective_projection(points, K, R, T):
     points_homo = np.vstack([points_3D, np.ones((1, N))])  # (4, N)
 
     # transform points to the camera frame
-    points_3D_cam = T_world2cam @ points_homo  # (4, N)
-    points_3D_cam = points_3D_cam[:3, :]  # (3, N)
+    transformed_points = T_world2cam @ points_homo  # (4, N)
+    transformed_points = transformed_points[:3, :]  # (3, N)
+    transformed_points = transformed_points.T  # (N, 3)
+
+    return transformed_points
+
+
+def perspective_projection(points, K):
+    """ Project 3D points in camera coordinate system onto the camera plane
+    Args:
+        points (np.ndarray): 3D points in camera coordinate system of shape (N, 3).
+        K (np.ndarray): camera intrinsic matrix of shape (3, 3).
+
+    Returns:
+        proj_points (np.ndarray): 2D points of shape (N, 2).
+    """
+    points = points.T  # (3, N)
 
     # project to image plane
-    points_2D = K @ points_3D_cam  # (3, N)
+    points_2D = K @ points  # (3, N)
     points_2D = points_2D[:2, :] / points_2D[2, :]  # (2, N)
     proj_points = points_2D.T  # (N, 2)
 
@@ -79,7 +93,7 @@ def visualize(root_dir, seq_name, kinect_id, frame_id,
             model_type='smpl',
             gender='neutral')
 
-        # load SMPL parameters in world coordinate system
+        # load SMPL parameters in the world coordinate system
         smpl_params_path = osp.join(root_dir, seq_name, 'smpl_params', f'{frame_id:06d}.npz')
         smpl_params = np.load(smpl_params_path)
         global_orient = smpl_params['global_orient']
@@ -87,7 +101,7 @@ def visualize(root_dir, seq_name, kinect_id, frame_id,
         betas = smpl_params['betas']
         transl = smpl_params['transl']
 
-        # computer SMPL vertices in world coordinate system
+        # compute SMPL vertices in the world coordinate system
         output = smpl(
             betas=torch.Tensor(betas).view(1, 10),
             body_pose=torch.Tensor(body_pose).view(1, 23, 3),
@@ -105,8 +119,11 @@ def visualize(root_dir, seq_name, kinect_id, frame_id,
         camera_params = cameras[camera_name]
         K, R, T = camera_params['K'], camera_params['R'], camera_params['T']
 
-        # project vertices
-        proj_vertices = perspective_projection(vertices, K, R, T)
+        # transform the vertices to the camera coordinate system
+        vertices_cam = transform_points(vertices, R, T)
+
+        # project the vertices
+        proj_vertices = perspective_projection(vertices_cam, K)
 
         # draw on the color image
         proj_vertices = np.round(proj_vertices).astype(int)
