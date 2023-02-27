@@ -150,10 +150,10 @@ Cameras use the OpenCV pinhole camera model.
 - R: rotation matrix
 - T: translation vector
 
-R, T form world2cam transformation.
+R, T form **world2cam** transformation.
 The world coordinate system is the same as kinect_color_000 coordinate system. 
 
-Each .json consists of the following:
+Each .json consists of parameters for 10 color cameras and 10 depth cameras:
 ```text
 {
     "kinect_color_000": {
@@ -161,8 +161,14 @@ Each .json consists of the following:
         "R": np.array of shape (3,3),
         "T": np.array of shape (3,)
     },
+    "kinect_depth_000": {
+        "K": np.array of shape (3,3),
+        "R": np.array of shape (3,3),
+        "T": np.array of shape (3,)
+    },
     ...
     "kinect_color_009": {...}
+    "kinect_depth_009": {...}
 }
 ```
 
