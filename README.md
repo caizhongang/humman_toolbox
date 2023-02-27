@@ -37,9 +37,7 @@ Masks for color images: [Aliyun](https://openxdlab.oss-cn-shanghai.aliyuncs.com/
 or [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/ERVZ8yDijvZItS7ptjT3JiIB4dE0QJ-8802bWdWGidBl1g?e=DnzSm1) 
 (~2.1 GB)
 
-Depth images: [Aliyun](https://openxdlab.oss-cn-shanghai.aliyuncs.com/HuMMan/humman_release_v1.0_recon/recon_kinect_depth.zip) 
-or [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/EU6npJQmLMxEv7qY1ps4TMcBdBtblBOfW2Kese8_xFSvkw?e=F5a2NX) 
-(~20 GB)
+Depth images: coming soon!
 
 SMPL parameters: [Aliyun](https://openxdlab.oss-cn-shanghai.aliyuncs.com/HuMMan/humman_release_v1.0_recon/recon_smpl_params.zip) 
 or [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/EbYzP89JCppHnGWn6WGyZUcBt9ZSRIZdJIm--cJVmu7XKw?e=Bq4HPp)
