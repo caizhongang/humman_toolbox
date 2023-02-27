@@ -3,7 +3,6 @@
 Please visit our [Homepage](https://caizhongang.github.io/projects/HuMMan/) for more details.      
 
 ## Updates
-- [2023-02-27] Release of depth maps for the Reconstruction Subset
 - [2023-02-27] Downloads are organized by modalities, links have been updated
 - [2023-01-23] Release of textured meshes for the Reconstruction Subset, and a toolbox
 - [2023-01-23] Minor fixes on the mask data, download links have been updated
