@@ -211,9 +211,9 @@ open3d_camera.intrinsic.set_intrinsics(
     width=640, height=576, fx=K[0, 0], fy=K[1, 1], cx=K[0, 2], cy=K[1, 2])
 
 # generate point cloud
-point_cloud = o3d.geometry.PointCloud.create_from_depth_image(
-    depth_image, open3d_camera.intrinsic)
-point_cloud = np.array(point_cloud)
+open3d_point_cloud = o3d.geometry.PointCloud.create_from_depth_image(
+    depth_image, open3d_camera.intrinsic, depth_trunc=5.0)
+point_cloud = np.array(open3d_point_cloud.points)
 ```
 
 ### Visualization

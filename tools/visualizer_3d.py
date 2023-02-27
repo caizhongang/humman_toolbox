@@ -48,9 +48,10 @@ def visualize_3d(root_dir, seq_name, kinect_id, frame_id,
     open3d_camera = o3d.camera.PinholeCameraParameters()
     open3d_camera.intrinsic.set_intrinsics(width=640, height=576, fx=K[0, 0], fy=K[1, 1], cx=K[0, 2], cy=K[1, 2])
 
-    point_cloud = o3d.geometry.PointCloud.create_from_depth_image(depth_image, open3d_camera.intrinsic)
+    open3d_point_cloud = o3d.geometry.PointCloud.create_from_depth_image(
+        depth_image, open3d_camera.intrinsic, depth_trunc=5.0)
 
-    visual.append(point_cloud)
+    visual.append(open3d_point_cloud)
 
     # visualize SMPL model in 3D
     if visualize_smpl:
