@@ -74,6 +74,8 @@ def visualize(root_dir, seq_name, kinect_id, frame_id,
     Returns:
         None
     """
+    assert frame_id % 6 == 0, 'Frame ID should be multiples of 6.'
+
     # load color image
     color_path = osp.join(root_dir, seq_name, 'kinect_color', f'kinect_{kinect_id:03d}', f'{frame_id:06d}.png')
     color = cv2.imread(color_path)

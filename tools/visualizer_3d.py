@@ -28,6 +28,8 @@ def visualize_3d(root_dir, seq_name, kinect_id, frame_id,
     Returns:
         None
     """
+    assert frame_id % 6 == 0, 'Frame ID should be multiples of 6.'
+
     visual = []
 
     # load depth image
@@ -102,9 +104,9 @@ if __name__ == '__main__':
     parser.add_argument('kinect_id', type=int, choices=list(range(10)),
                         help='Kinect ID. Available range is [0, 9]')
     parser.add_argument('frame_id', type=int,
-                        help='Available range varies for different sequences and should be multiples of 6.')
+                        help='available range varies for different sequences and should be multiples of 6.')
     parser.add_argument('--visualize_smpl', action='store_true',
-                        help='whether to overlay SMPL vertices on color image.')
+                        help='whether to visualize SMPL model.')
     parser.add_argument('--smpl_model_path',
                         default='/home/user/mmhuman3d/data/body_models',
                         help="directory in which SMPL body models are stored")
