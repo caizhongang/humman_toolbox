@@ -23,7 +23,7 @@ def visualize_3d(root_dir, seq_name, kinect_id, frame_id,
         seq_name (str): sequence name, in the format 'pxxxxxx_axxxxxx'.
         kinect_id (int): Kinect ID. Available range is [0, 9].
         frame_id (int): frame ID. Available range varies for different sequences.
-        visualize_smpl (bool): whether to visualize SMPL model. Defaults to False.
+        visualize_smpl (bool): whether to visualize SMPL 3D mesh model. Defaults to False.
         smpl_model_path (str): directory in which SMPL body models are stored.
     Returns:
         None
@@ -107,7 +107,7 @@ if __name__ == '__main__':
     parser.add_argument('frame_id', type=int,
                         help='available range varies for different sequences and should be multiples of 6.')
     parser.add_argument('--visualize_smpl', action='store_true',
-                        help='whether to visualize SMPL model.')
+                        help='whether to visualize SMPL 3D mesh model.')
     parser.add_argument('--smpl_model_path',
                         default='/home/user/mmhuman3d/data/body_models',
                         help="directory in which SMPL body models are stored")

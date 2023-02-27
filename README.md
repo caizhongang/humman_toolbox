@@ -269,7 +269,7 @@ python tools/visualizer_3d <root_dir> <seq_name> <kinect_id> <frame_id> \
 - seq_name (str): sequence name, in the format 'pxxxxxx_axxxxxx'.
 - kinect_id (int): Kinect ID. Available range is [0, 9].
 - frame_id (int): frame ID. Available range varies for different sequences.
-- visualize_smpl (bool, optional): whether to overlay SMPL vertices on color image. Defaults to False.
+- visualize_smpl (bool, optional): whether to visualize SMPL 3D mesh model.
 - smpl_model_path (str, optional): directory in which SMPL body models are stored.
 
 Example:
