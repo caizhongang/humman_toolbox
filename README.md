@@ -3,6 +3,7 @@
 Please visit our [Homepage](https://caizhongang.github.io/projects/HuMMan/) for more details.      
 
 ## Updates
+- [2023-04-25] Release of manually annotated masks for color images in the test split
 - [2023-02-27] Downloads are organized by modalities, links have been updated
 - [2023-01-23] Release of textured meshes for the Reconstruction Subset, and a toolbox
 - [2023-01-23] Minor fixes on the mask data, download links have been updated
@@ -32,7 +33,12 @@ or [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_
 or [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/Edd6RwJ-9VJCpV99BKXp0SgBNvvtLdZmJEOvrFv_K8Aj1w?e=XkjLTu) 
 (~84 GB)
 
-Masks for color images: [Aliyun](https://openxdlab.oss-cn-shanghai.aliyuncs.com/HuMMan/humman_release_v1.0_recon/recon_kinect_mask.zip) 
+Masks:
+- Manually annotated for color images in the test split only:
+[Aliyun](https://openxdlab.oss-cn-shanghai.aliyuncs.com/HuMMan/humman_release_v1.0_recon/recon_kinect_mask_manual.zip)
+or [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/ESrcqBN8SltMq-dk1OW-XVYBUiU8TijQjWGRm107o1RsYg?e=AttU91)
+(~32 MB)
+- Generated via matting for color images in all splits: [Aliyun](https://openxdlab.oss-cn-shanghai.aliyuncs.com/HuMMan/humman_release_v1.0_recon/recon_kinect_mask.zip) 
 or [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/ERVZ8yDijvZItS7ptjT3JiIB4dE0QJ-8802bWdWGidBl1g?e=DnzSm1) 
 (~2.1 GB)
 
@@ -50,8 +56,29 @@ Textured meshes: [Aliyun](https://openxdlab.oss-cn-shanghai.aliyuncs.com/HuMMan/
 or [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/EYgbLNilus1Auut9N-qs5rkBZ-NuNYWG5ml-tRxTlgeohA?e=Sdaogm)
 (~22 GB)
 
+Suggested splits:
+[train](https://caizhongang.github.io/projects/HuMMan/splits/train.txt) and
+[test](https://caizhongang.github.io/projects/HuMMan/splits/test.txt).
+
 ### Data Structure
-Please download the .zip files and decompress them into the following file structure:
+Please download the .zip files and place in the same directory, note that you may not need all of them.
+```text
+humman_release_v1.0_recon/   
+├── recon_kinect_color_part_1.zip
+├── recon_kinect_color_part_2.zip
+├── recon_kinect_color_part_3.zip
+├── recon_kinect_mask_manual.zip
+├── recon_kinect_mask.zip
+├── recon_smpl_params.zip 
+├── recon_cameras.zip
+├── recon_textured_meshes.zip
+└── recon_kinect_depth.zip (coming soon)
+```
+Then decompress them:
+```bash
+unzip "*.zip"
+```
+The file structure should look like this:
 ```text
 humman_release_v1.0_recon/   
 └── pxxxxxx_axxxxxx/  
@@ -60,6 +87,15 @@ humman_release_v1.0_recon/
     │   ...
     │   └── kinect_009/
     │       ├── 000000.png (uint8, 3 channels)
+    │       ├── 000006.png
+    │       ...
+    │       └── xxxxxx.png
+    │
+    ├── kinect_mask_manual/
+    │   ├── kinect_000/
+    │   ...
+    │   └── kinect_009/
+    │       ├── 000000.png (uint8, 1 channel)
     │       ├── 000006.png
     │       ...
     │       └── xxxxxx.png
@@ -112,7 +148,7 @@ color_bgr = cv2.imread('/path/to/xxxxxxx.png')
 color_rgb = cv2.cvtColor(color_bgr, cv2.COLOR_BGR2RGB)  # if RGB images are used
 ```
 
-#### kinect_mask/
+#### kinect_mask/ or kinect_mask_manual/
 ```python
 import cv2
 mask = cv2.imread('/path/to/xxxxxxx.png', cv2.IMREAD_GRAYSCALE)  # grayscale
@@ -239,13 +275,14 @@ python tools/visualizer <root_dir> <seq_name> <kinect_id> <frame_id> \
 - kinect_id (int): Kinect ID. Available range is [0, 9].
 - frame_id (int): frame ID. Available range varies for different sequences.
 - visualize_mask (bool, optional): whether to overlay mask on color image. Defaults to False.
+- visualize_mask_manual (bool, optional): whether to overlay manually annotated mask on color image. Defaults to False.
 - visualize_smpl (bool, optional): whether to overlay SMPL vertices on color image. Defaults to False.
 - smpl_model_path (str, optional): directory in which SMPL body models are stored.
 
 Example:
 ```bash
 python tools/visualizer /home/user/humman_release_v1.0_recon p000455_a000986 0 0 \
-  --visualize_mask --visualize_smpl --smpl_model_path /home/user/body_models/
+  --visualize_mask_manual --visualize_smpl --smpl_model_path /home/user/body_models/
 ```
 
 Note that the SMPL model path should consist the following structure:

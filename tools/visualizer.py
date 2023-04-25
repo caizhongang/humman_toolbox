@@ -61,7 +61,8 @@ def perspective_projection(points, K):
 
 
 def visualize(root_dir, seq_name, kinect_id, frame_id,
-              visualize_mask=False, visualize_smpl=False, smpl_model_path=None):
+              visualize_mask=False, visualize_mask_manual=False,
+              visualize_smpl=False, smpl_model_path=None):
     """
     Args:
         root_dir (str): root directory in which data is stored.
@@ -75,6 +76,8 @@ def visualize(root_dir, seq_name, kinect_id, frame_id,
         None
     """
     assert frame_id % 6 == 0, 'Frame ID should be multiples of 6.'
+    if visualize_mask and visualize_mask_manual:
+        raise ValueError('visualize_mask and visualize_mask_manual cannot be True at the same time.')
 
     # load color image
     color_path = osp.join(root_dir, seq_name, 'kinect_color', f'kinect_{kinect_id:03d}', f'{frame_id:06d}.png')
@@ -83,6 +86,15 @@ def visualize(root_dir, seq_name, kinect_id, frame_id,
     # overlay mask
     if visualize_mask:
         mask_path = osp.join(root_dir, seq_name, 'kinect_mask', f'kinect_{kinect_id:03d}', f'{frame_id:06d}.png')
+        mask = cv2.imread(mask_path, cv2.IMREAD_GRAYSCALE)
+        color[mask == 0] = 0
+
+    # overlay manually annotated mask
+    if visualize_mask_manual:
+        mask_path = osp.join(root_dir, seq_name, 'kinect_mask_manual', f'kinect_{kinect_id:03d}', f'{frame_id:06d}.png')
+        if not osp.isfile(mask_path):
+            raise FileNotFoundError('Cannot find the manually annotated mask, '
+                                    'which is only available for the test split.')
         mask = cv2.imread(mask_path, cv2.IMREAD_GRAYSCALE)
         color[mask == 0] = 0
 
@@ -149,6 +161,8 @@ if __name__ == '__main__':
                         help='Available range varies for different sequences and should be multiples of 6.')
     parser.add_argument('--visualize_mask', action='store_true',
                         help='whether to overlay mask on color image.')
+    parser.add_argument('--visualize_mask_manual', action='store_true',
+                        help='whether to overlay manually annotated mask on color image.')
     parser.add_argument('--visualize_smpl', action='store_true',
                         help='whether to overlay SMPL vertices on color image.')
     parser.add_argument('--smpl_model_path',
@@ -162,6 +176,7 @@ if __name__ == '__main__':
         kinect_id=args.kinect_id,
         frame_id=args.frame_id,
         visualize_mask=args.visualize_mask,
+        visualize_mask_manual=args.visualize_mask_manual,
         visualize_smpl=args.visualize_smpl,
         smpl_model_path=args.smpl_model_path,
     )
