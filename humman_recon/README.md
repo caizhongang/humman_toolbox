@@ -296,7 +296,7 @@ python tools/visualizer_3d <root_dir> <seq_name> <kinect_id> <frame_id> \
 
 Example:
 ```bash
-python tools/visualizer /home/user/humman_release_v1.0_recon p000455_a000986 0 0 \
+python tools/visualizer_3d /home/user/humman_release_v1.0_recon p000455_a000986 0 0 \
   --visualize_smpl --smpl_model_path /home/user/body_models/
 ```
 

@@ -248,47 +248,6 @@ point_cloud = np.array(open3d_point_cloud.points)
 We provide a simple 2D visualization tool for color images, masks, and SMPL vertices,
 and a simple 3D visualization tool for point clouds (from depth images) and SMPL mesh models.
 
-#### Installation
-The tool does not require specific version of dependency packages. 
-The following is for reference only. 
-```bash
-conda create -n humman python=3.8 -y
-conda activate humman
-conda install pytorch==1.12.1 torchvision==0.13.1 torchaudio==0.12.1 cudatoolkit=11.6 -c pytorch -c conda-forge -y
-pip install opencv-python smplx chumpy trimesh
-pip install open3d  # additional package for 3D visualization
-```
-
-#### Run RGB-D Visualizer
-```bash
-python tools/visualizer <root_dir> <seq_name> <kinect_id> <frame_id> \
-  [--visualize_mask] [--visualize_smpl] [--smpl_model_path]
-```
-- root_dir (str): root directory in which data is stored.
-- seq_name (str): sequence name, in the format 'pxxxxxx_axxxxxx'.
-- kinect_id (int): Kinect ID. Available range is [0, 9].
-- frame_id (int): frame ID. Available range varies for different sequences.
-- visualize_mask (bool, optional): whether to overlay mask on color image. Defaults to False.
-- visualize_mask_manual (bool, optional): whether to overlay manually annotated mask on color image. Defaults to False.
-- visualize_smpl (bool, optional): whether to overlay SMPL vertices on color image. Defaults to False.
-- smpl_model_path (str, optional): directory in which SMPL body models are stored.
-
-Example:
-```bash
-python tools/visualizer /home/user/humman_release_v1.0_recon p000455_a000986 0 0 \
-  --visualize_mask_manual --visualize_smpl --smpl_model_path /home/user/body_models/
-```
-
-Note that the SMPL model path should consist the following structure:
-```text
-body_models/   
-└── smpl/  
-    └── SMPL_NEUTRAL.pkl
-```
-`SMPL_NEUTRAL.pkl` may be downloaded from [here](https://github.com/classner/up/blob/master/models/3D/basicModel_neutral_lbs_10_207_0_v1.0.0.pkl). 
-Renaming from `basicModel_neutral_lbs_10_207_0_v1.0.0.pkl` to `SMPL_NEUTRAL.pkl` is needed.
-
-
 #### Run 3D Visualizer
 ```bash
 python tools/visualizer_3d <root_dir> <seq_name> <kinect_id> <frame_id> \
@@ -303,8 +262,15 @@ python tools/visualizer_3d <root_dir> <seq_name> <kinect_id> <frame_id> \
 
 Example:
 ```bash
-python tools/visualizer /home/user/humman_release_v1.0_recon p000455_a000986 0 0 \
+python tools/visualizer_3d /home/user/humman_release_v1.0_point p000455_a000986 0 0 \
   --visualize_smpl --smpl_model_path /home/user/body_models/
 ```
 
-
+Note that the SMPL model path should consist the following structure:
+```text
+body_models/   
+└── smpl/  
+    └── SMPL_NEUTRAL.pkl
+```
+`SMPL_NEUTRAL.pkl` may be downloaded from [here](https://github.com/classner/up/blob/master/models/3D/basicModel_neutral_lbs_10_207_0_v1.0.0.pkl). 
+Renaming from `basicModel_neutral_lbs_10_207_0_v1.0.0.pkl` to `SMPL_NEUTRAL.pkl` is needed.
