@@ -1,6 +1,6 @@
-# HuMMan Release v1.0: 3D Vision Subset
+# HuMMan Release v1.0: 3D Vision Subset (HuMMan-Point)
 
-HuMMan v1.0: 3D Vision Subset consists of 340 subjects, 247 actions and 907 sequences. 
+HuMMan v1.0: 3D Vision Subset (HuMMan-Point) consists of 340 subjects, 247 actions and 907 sequences. 
 Color videos, depth images, masks (computed with background), SMPL parameters, and camera 
 parameters are provided. It is worth noting that data captured with a mobile sensor (iPhone)
 are also included. This subset is ideal for 3D vision researchers to study dynamic humans
@@ -8,38 +8,25 @@ with commercial depth sensors.
 
 ### Downloads
 
-Color videos (Kinect):
-- Part 1: [Aliyun]() (~ GB) 
-- Part 2: [Aliyun]() (~ GB)
+HuMMan-Point is currently hosted on [OpenXLab](https://openxlab.org.cn/datasets/OpenXDLab/HuMMan/tree/main/humman_release_v1.0_point).
+We recommend download files using [CLI tools](https://openxlab.org.cn/datasets/OpenXDLab/HuMMan/cli/main):
+```bash
+openxlab dataset download --dataset-repo OpenXDLab/HuMMan --source-path /humman_release_v1.0_point --target-path /home/user/humman_release_v1.0_point
+```
 
-Depth images (Kinect): 
-- Part 1: [Aliyun]() (~ GB) 
-- Part 2: [Aliyun]() (~ GB)
-- Part 3: [Aliyun]() (~ GB) 
-- Part 4: [Aliyun]() (~ GB)
-- Part 5: [Aliyun]() (~ GB) 
-- Part 6: [Aliyun]() (~ GB)
-- Part 7: [Aliyun]() (~ GB) 
-- Part 8: [Aliyun]() (~ GB)
-- Part 9: [Aliyun]() (~ GB) 
-- Part 10: [Aliyun]() (~ GB)
-
-Masks: [Aliyun]() (~ GB)
-
-Color videos (iPhone): [Aliyun]() (~ GB) 
-
-Depth images (iPhone): [Aliyun]() (~ GB)
-
-SMPL parameters: [Aliyun]() (~ GB)
-
-Camera parameters (world2cam): [Aliyun]() (~ GB)
-
-Background: [Aliyun]() (~ GB)
+You can selectively download files that you need, for example:
+```bash
+openxlab dataset download --dataset-repo OpenXDLab/HuMMan --source-path /humman_release_v1.0_point/iphone_color.7z --target-path /home/user/humman_release_v1.0_point/iphone_color.7z
+```
 
 ### Data Structure
-Please download the `.7z` files and place in the same directory, note that you may not need all of them.
+Please download the `.7z` files and place in the same directory, note that you may not need all files.
 ```text
 humman_release_v1.0_recon/   
+├── point_background.7z
+├── point_cameras.7z
+├── point_iphone_color.7z
+├── point_iphone_depth.7z
 ├── point_kinect_color_part_01.7z
 ├── point_kinect_color_part_02.7z
 ├── point_kinect_depth_part_01.7z
@@ -53,17 +40,12 @@ humman_release_v1.0_recon/
 ├── point_kinect_depth_part_09.7z
 ├── point_kinect_depth_part_10.7z
 ├── point_kinect_depth_part_11.7z
-├── point_kinect_depth_part_12.7z
 ├── point_kinect_mask.7z
-├── point_iphone_color.7z
-├── point_iphone_depth.7z
-├── point_smpl_params.7z 
-├── point_cameras.7z
-└── point_background.7z
+└── point_smpl_params.7z 
 ```
 Then decompress them:
 ```bash
-unzip "*.7z" (TODO!)
+7z x *.7z
 ```
 The file structure should look like this:
 ```text
@@ -134,8 +116,20 @@ python tools/video_splitter.py --root_dir /home/user/humman_release_v1.0_point/ 
 
 ### Data Loading
 
-#### kinect_color/ and iphone_color/ (TODO!)
-To save
+#### kinect_color/ and iphone_color/ 
+To read the video directly:
+```python
+cap = cv2.VideoCapture('/path/to/xxxxxxx.mp4')
+color_rgb_list = []
+while cap.isOpened():
+    success, color_bgr = cap.read()
+    if not success:
+        break
+    color_rgb = cv2.cvtColor(color_bgr, cv2.COLOR_BGR2RGB) # if RGB images are used
+    color_rgb_list.append(color_rgb)
+cap.release()
+```
+Otherwise, to read from frames split from the videos (see `video_splitter.py` above):
 ```python
 import cv2
 color_bgr = cv2.imread('/path/to/xxxxxxx.png')
@@ -216,7 +210,15 @@ camera_params = cameras['kinect_color_000']  # e.g., Kinect ID = 0
 K, R, T = camera_params['K'], camera_params['R'], camera_params['T']
 ```
 
-To convert the depth maps to point clouds in camera coordinate system (TODO!)
+#### kinect_depth/ or iphone_depth/
+
+To read the depth maps 
+```python
+import cv2
+depth_image = cv2.imread('/path/to/xxxxxxx.png', cv2.IMREAD_UNCHANGED)
+```
+
+To convert the depth maps to point clouds in **depth** camera coordinate system
 ```python
 import open3d as o3d
 import numpy as np
@@ -244,27 +246,35 @@ open3d_point_cloud = o3d.geometry.PointCloud.create_from_depth_image(
 point_cloud = np.array(open3d_point_cloud.points)
 ```
 
-### Visualization
-We provide a simple 2D visualization tool for color images, masks, and SMPL vertices,
-and a simple 3D visualization tool for point clouds (from depth images) and SMPL mesh models.
+To convert the depth maps to color point clouds in **color** camera coordinate system, please take the `create_rgbd` function in `visualizer_rgbd.py` as a reference. Note for kinects, the color and depth cameras are not perfectly aligned in terms of camera coordiante systems.
 
-#### Run 3D Visualizer
+### Visualization
+We provide a simple 3D visualization tool for point clouds (from depth images) and SMPL mesh models. If `frame_id` is specified, an interactive visualizer is used to visualize oen frame of RGB-D data with an interactive viewer (adjustable camera pose); otherwise a sequence visualizer is used to visualize the entire RGB-D video with a pre-set virtual camera.
+
+#### Run RGB-D Visualizer
 ```bash
-python tools/visualizer_3d <root_dir> <seq_name> <kinect_id> <frame_id> \
-  [--visualize_smpl] [--smpl_model_path]
+python tools/visualizer_rgbd <root_dir> <seq_name> <device_name> [frame_id] \
+  [virtual_cam] [video_save_path] [--visualize_smpl] [--smpl_model_path]
 ```
 - root_dir (str): root directory in which data is stored.
 - seq_name (str): sequence name, in the format 'pxxxxxx_axxxxxx'.
-- kinect_id (int): Kinect ID. Available range is [0, 9].
-- frame_id (int): frame ID. Available range varies for different sequences.
+- device_name (str): device name. 'kinect_000' to 'kinect_009' or 'iphone'.
+- frame_id (int): frame ID. If not specified, the entire video will be visualized.
+- virtual_cam (str): virtual camera pose. Required for visualizing the entire video.
+- video_save_path (str): path to save the visualization video. If not specified, it will be ./{seq_name}-{device_name}.mp4
 - visualize_smpl (bool, optional): whether to visualize SMPL 3D mesh model.
 - smpl_model_path (str, optional): directory in which SMPL body models are stored.
 
-Example:
+Example 1: use the interactive visualizer to visualize frame '0' of 'kinect_000':
 ```bash
-python tools/visualizer_3d /home/user/humman_release_v1.0_point p000455_a000986 0 0 \
-  --visualize_smpl --smpl_model_path /home/user/body_models/
+python tools/visualizer_rgbd /home/user/humman_release_v1.0_point p001110_a001425 kinect_000 --frame_id 0 
 ```
+
+Example 2: use the sequence visualizer to visualize the entire 'iphone' video:
+```bash
+python tools/visualizer_rgbd /home/user/humman_release_v1.0_point p001110_a001425 iphone --virtual_cam assets/virtual_cam_iphone.json 
+```
+
 
 Note that the SMPL model path should consist the following structure:
 ```text

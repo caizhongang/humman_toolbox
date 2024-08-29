@@ -1,6 +1,6 @@
-# HuMMan Release v1.0: Reconstruction Subset
+# HuMMan Release v1.0: Reconstruction Subset (HuMMan-Recon)
 
-HuMMan v1.0: Reconstruction Subset consists of 153 subjects and 339 sequences. 
+HuMMan v1.0: Reconstruction Subset (HuMMan-Recon) consists of 153 subjects and 339 sequences. 
 Color images, masks (via matting), SMPL parameters, and camera parameters are 
 provided. It is a challenging dataset for its collection of diverse subject 
 appearance and expressive actions. Moreover, it unleashes the potential to 
@@ -9,43 +9,55 @@ sensors, dynamic subjects, and computer vision-powered automatic annotations.
 
 ### Downloads
 
+#### Option 1: OpenXLab
+
+HuMMan-Recon is currently hosted on [OpenXLab](https://openxlab.org.cn/datasets/OpenXDLab/HuMMan/tree/main/humman_release_v1.0_recon).
+We recommend download files using [CLI tools](https://openxlab.org.cn/datasets/OpenXDLab/HuMMan/cli/main):
+```bash
+openxlab dataset download --dataset-repo OpenXDLab/HuMMan --source-path /humman_release_v1.0_recon --target-path /home/user/humman_release_v1.0_point
+```
+
+You can selectively download files that you need, for example:
+```bash
+openxlab dataset download --dataset-repo OpenXDLab/HuMMan --source-path /humman_release_v1.0_recon/recon_kinect_color_part_1.zip --target-path /home/user/humman_release_v1.0_point/recon_kinect_color_part_1.zip
+```
+
+#### Option 2: OneDrive
+
+We have backed-up all files on OneDrive (except for depth images).
+
 Color images:
-- Part 1: [Aliyun](https://openxdlab.oss-cn-shanghai.aliyuncs.com/HuMMan/humman_release_v1.0_recon/recon_kinect_color_part_1.zip) 
-or [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/Ed6CM2tKVmRGiqcCyIcd4rABYy8kcf_tIbDU4nmuM4Zi1Q?e=yrC0pT) 
+- Part 1: [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/Ed6CM2tKVmRGiqcCyIcd4rABYy8kcf_tIbDU4nmuM4Zi1Q?e=yrC0pT) 
 (~84 GB)
-- Part 2: [Aliyun](https://openxdlab.oss-cn-shanghai.aliyuncs.com/HuMMan/humman_release_v1.0_recon/recon_kinect_color_part_2.zip) 
-or [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/EY1aLq6U9ppJsYuMy_y30yABGhrepLtgk4KQ_9Xl_O3heQ?e=7cTTvM) 
+- Part 2: [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/EY1aLq6U9ppJsYuMy_y30yABGhrepLtgk4KQ_9Xl_O3heQ?e=7cTTvM) 
 (~73 GB)
-- Part 3: [Aliyun](https://openxdlab.oss-cn-shanghai.aliyuncs.com/HuMMan/humman_release_v1.0_recon/recon_kinect_color_part_3.zip) 
-or [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/Edd6RwJ-9VJCpV99BKXp0SgBNvvtLdZmJEOvrFv_K8Aj1w?e=XkjLTu) 
+- Part 3: [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/Edd6RwJ-9VJCpV99BKXp0SgBNvvtLdZmJEOvrFv_K8Aj1w?e=XkjLTu) 
 (~84 GB)
 
 Masks:
 - Manually annotated for color images in the test split only:
-[Aliyun](https://openxdlab.oss-cn-shanghai.aliyuncs.com/HuMMan/humman_release_v1.0_recon/recon_kinect_mask_manual.zip)
-or [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/ESrcqBN8SltMq-dk1OW-XVYBUiU8TijQjWGRm107o1RsYg?e=AttU91)
+[OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/ESrcqBN8SltMq-dk1OW-XVYBUiU8TijQjWGRm107o1RsYg?e=AttU91)
 (~32 MB)
-- Generated via matting for color images in all splits: [Aliyun](https://openxdlab.oss-cn-shanghai.aliyuncs.com/HuMMan/humman_release_v1.0_recon/recon_kinect_mask.zip) 
-or [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/ERVZ8yDijvZItS7ptjT3JiIB4dE0QJ-8802bWdWGidBl1g?e=DnzSm1) 
+- Generated via matting for color images in all splits: 
+[OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/ERVZ8yDijvZItS7ptjT3JiIB4dE0QJ-8802bWdWGidBl1g?e=DnzSm1) 
 (~2.1 GB)
 
-Depth images: [Aliyun](https://openxdlab.oss-cn-shanghai.aliyuncs.com/HuMMan/humman_release_v1.0_recon/recon_kinect_depth.zip) (~20 GB)
-
-SMPL parameters: [Aliyun](https://openxdlab.oss-cn-shanghai.aliyuncs.com/HuMMan/humman_release_v1.0_recon/recon_smpl_params.zip) 
-or [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/EbYzP89JCppHnGWn6WGyZUcBt9ZSRIZdJIm--cJVmu7XKw?e=Bq4HPp)
+SMPL parameters: 
+[OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/EbYzP89JCppHnGWn6WGyZUcBt9ZSRIZdJIm--cJVmu7XKw?e=Bq4HPp)
 (~7.6 MB)
 
-Camera parameters (world2cam): [Aliyun](https://openxdlab.oss-cn-shanghai.aliyuncs.com/HuMMan/humman_release_v1.0_recon/recon_cameras.zip) 
-or [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/EZyvqo2fKhdBmyLj6Tchf8MB_dUr2cneVwCdD29l6nyP2A?e=GsLBqF)
+Camera parameters (world2cam): 
+[OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/EZyvqo2fKhdBmyLj6Tchf8MB_dUr2cneVwCdD29l6nyP2A?e=GsLBqF)
 (~1.3 MB). 
 
-Textured meshes: [Aliyun](https://openxdlab.oss-cn-shanghai.aliyuncs.com/HuMMan/humman_release_v1.0_recon/recon_textured_meshes.zip) 
-or [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/EYgbLNilus1Auut9N-qs5rkBZ-NuNYWG5ml-tRxTlgeohA?e=Sdaogm)
+Textured meshes: 
+[OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/EYgbLNilus1Auut9N-qs5rkBZ-NuNYWG5ml-tRxTlgeohA?e=Sdaogm)
 (~22 GB)
 
 Suggested splits:
 [train](https://caizhongang.github.io/projects/HuMMan/splits/train.txt) and
 [test](https://caizhongang.github.io/projects/HuMMan/splits/test.txt).
+
 
 ### Data Structure
 Please download the .zip files and place in the same directory, note that you may not need all of them.
