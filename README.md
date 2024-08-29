@@ -23,7 +23,7 @@ To use our visulization tools, relevant python packages need to be installed.
 ```bash
 conda create -n humman python=3.9 -y
 conda activate humman
-pip install torch==1.12.1 opencv-python==4.10.0.84 smplx==0.1.28 chumpy==0.70 trimesh==4.4.3 tqdm==4.66.4 open3d numpy==1.26.4
+pip install torch==1.12.1 opencv-python==4.10.0.84 smplx==0.1.28 chumpy==0.70 trimesh==4.4.3 tqdm==4.66.4 open3d==0.14.1 numpy==1.23.1
 ```
 
 ## Citation
