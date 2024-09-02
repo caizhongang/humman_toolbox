@@ -7,9 +7,9 @@ SMPL parameters, stage divisions, overall & bodypart annotations and video visua
 
 SMPL parameters and Annotations (~300 MB)
 
-Visualizations (mp4) (~8.8 GB):
+Visualizations (mp4) (~8.8 GB)
 
-[link](https://openxlab.org.cn/datasets/OpenXDLab/HuMMan/tree/main/humman_release_v1.0_mogen) 
+[OpenXLab Link](https://openxlab.org.cn/datasets/OpenXDLab/HuMMan/tree/main/humman_release_v1.0_mogen) 
 
 
 ### Data Structure
