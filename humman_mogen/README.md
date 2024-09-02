@@ -1,15 +1,15 @@
-# HuMMan Release v1.0: Reconstruction Subset
+# HuMMan Release v1.0: Motion Generation Subset
 
-HuMMan v1.0: Mogen Subset consists of 179 subjects, 6264 sequences. 
+HuMMan v1.0: Mogen Subset consists of 160 actions, 179 subjects and 6264 motion sequences. 
 SMPL parameters, stage divisions, overall & bodypart annotations and video visualizations are provided. 
 
 ### Downloads
 
-SMPL parameters and Annotations:
-[link]() (~300 MB)
+SMPL parameters and Annotations (~300 MB)
+Visualizations (mp4) (~8.8 GB):
 
-Visualizations (mp4):
-[link]() (~8.8 GB)
+[link](https://openxlab.org.cn/datasets/OpenXDLab/HuMMan/tree/main/humman_release_v1.0_mogen) 
+
 
 ### Data Structure
 Please download the .zip files and place in the same directory, note that you may not need all of them.
@@ -42,7 +42,7 @@ humman_release_v1.0_mogen/
     └── ......
     
 ```
-Files are named in the format of "PersonID_ActionID", representing the ID of the human subject and the motion performed. Motion named 'rxxxxxx' is a mirror of 'axxxxxx'. Motion sequences are stored in npz files under "./smpl_on_ground", in SMPL format (23 joints). Annotation .json files are under "./annotations". Visualization mp4 videos are under "./visualizations".
+Files are named in the format of "PersonID_ActionID", representing the ID of the human subject and the action performed. Action named 'rxxxxxx' is a mirror of 'axxxxxx'. Motion sequences are stored in npz files under "./smpl_on_ground", in SMPL format (23 joints). Annotation .json files are under "./annotations". Visualization mp4 videos are under "./visualizations".
 
 
 #### smpl_parms/
