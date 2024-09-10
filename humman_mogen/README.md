@@ -1,16 +1,16 @@
 # HuMMan Release v1.0: Motion Generation Subset
 
-HuMMan v1.0: Motion Generation Subset (HuMMan-MoGen) consists of 160 actions (320 after mirrored), 179 subjects, 6264 motion sequences and 112112 fine-grained text descriptions.  
+HuMMan v1.0: Motion Generation Subset (HuMMan-MoGen) consists of 160 actions (320 after mirrored), 179 subjects, 6264 motion sequences and 112112 fine-grained text descriptions. 
 This dataset is designed to facilitate a large-scale study on the fine-grained motion generation task. 
 It features temporal (by stage) and spatial (by part) text annotation of each SMPL motion sequence. 
 Specifically, each motion sequence is divided into multiple standard action phases.
 For each phase, it is not only annotated with an overall description, but seven more detailed annotations to 
 describe the head, torso, left arm, right arm, left leg, right leg, and trajectory of the pelvis joint. 
-Please see our [demo video]() for a few examples.
+Please see our [demo video](https://youtu.be/xYgii9vqG08) for a few examples.
 
 ### Downloads
 
-The dataset can be downloaded from [OpenXLab Link](https://openxlab.org.cn/datasets/OpenXDLab/HuMMan/tree/main/humman_release_v1.0_mogen):
+The dataset can be downloaded from [OpenXLab](https://openxlab.org.cn/datasets/OpenXDLab/HuMMan/tree/main/humman_release_v1.0_mogen):
 - SMPL parameters and annotations (~300 MB)
 - Visualization videos (optional, ~8.8 GB)
 
