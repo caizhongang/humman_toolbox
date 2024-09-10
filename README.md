@@ -3,8 +3,9 @@
 Please visit our [Homepage](https://caizhongang.github.io/projects/HuMMan/) for more details.      
 
 ## Updates
+- [2024-09-10] Release of HuMMan v1.0: Motion Generation Subset (HuMMan-MoGen)
 - [2024-08-29] Release of HuMMan v1.0: 3D Vision Subset (HuMMan-Point)
-- [2024-08-29] We have changed our data host! All download instructions have been updated.
+- [2024-08-29] We have changed our data host! All download instructions have been updated
 - [2024-07-27] HuMMan-Recon: Release of depth maps for the Reconstruction Subset
 - [2023-04-25] HuMMan-Recon: Release of manually annotated masks for color images in the test split
 - [2023-02-27] HuMMan-Recon: Downloads are organized by modalities, links have been updated
@@ -16,24 +17,13 @@ Please visit our [Homepage](https://caizhongang.github.io/projects/HuMMan/) for 
 
 ## Datasets
 
-- [HuMMan-Recon](humman_recon/): HuMMan v1.0: Reconstruction Subset (HuMMan-Recon)
-- [HuMMan-Point](humman_point/): HuMMan v1.0: 3D Vision Subset (HuMMan-Point)
-- [HuMMan-MoGen](humman_mogen/): HuMMan v1.0: Motion Generation Subset (HuMMan-MoGen)
+- [HuMMan-Recon](humman_recon/): HuMMan v1.0: Reconstruction Subset
+- [HuMMan-Point](humman_point/): HuMMan v1.0: 3D Vision Subset
+- [HuMMan-MoGen](humman_mogen/): HuMMan v1.0: Motion Generation Subset
 
-## Installation
-To use our visulization tools, relevant python packages need to be installed.
-```bash
-conda create -n humman python=3.9 -y
-conda activate humman
-pip install torch==1.12.1 opencv-python==4.10.0.84 smplx==0.1.28 chumpy==0.70 trimesh==4.4.3 tqdm==4.66.4 open3d==0.14.1 numpy==1.23.1
-```
-It is also highly recommended to install `openxlab` package to facilitate file downloading.
-```bash
-pip install openxlab
-```
 
 ## Citation
-Please cite our work if you find our dataset and tools useful.
+Please cite our work if you use our datasets (`HuMMan-Recon`, `HuMMan-Point`, or `HuMMan-MoGen`) in your research.
 ```text
 @inproceedings{cai2022humman,
   title={{HuMMan}: Multi-modal 4d human dataset for versatile sensing and modeling},
@@ -45,5 +35,15 @@ Please cite our work if you find our dataset and tools useful.
   pages={557--577},
   year={2022},
   organization={Springer}
+}
+```
+
+Please also cite *FineMoGen* if you use the `HuMMan-MoGen` subset.
+```text
+@article{zhang2023finemogen,
+  title   =   {FineMoGen: Fine-Grained Spatio-Temporal Motion Generation and Editing}, 
+  author  =   {Zhang, Mingyuan and Li, Huirong and Cai, Zhongang and Ren, Jiawei and Yang, Lei and Liu, Ziwei},
+  year    =   {2023},
+  journal =   {NeurIPS},
 }
 ```

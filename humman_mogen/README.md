@@ -1,15 +1,18 @@
 # HuMMan Release v1.0: Motion Generation Subset
 
-HuMMan v1.0: Mogen Subset consists of 160 actions, 179 subjects and 6264 motion sequences. 
-SMPL parameters, stage divisions, overall & bodypart annotations and video visualizations are provided. 
+HuMMan v1.0: Motion Generation Subset (HuMMan-MoGen) consists of 160 actions, 179 subjects and 6264 motion sequences. 
+This dataset is designed to facilitate a large-scale study on the fine-grained motion generation task. 
+It features temporal (by stage) and spatial (by part) text annotation of each SMPL motion sequence. 
+Specifically, each motion sequence is divided into multiple standard action phases.
+For each phase, it is not only annotated with an overall description, but seven more detailed annotations to 
+describe the head, torso, left arm, right arm, left leg, right leg, and trajectory of the pelvis joint. 
+Please see our [demo video]() for a few examples.
 
 ### Downloads
 
-SMPL parameters and Annotations (~300 MB)
-
-Visualizations (mp4) (~8.8 GB)
-
-[OpenXLab Link](https://openxlab.org.cn/datasets/OpenXDLab/HuMMan/tree/main/humman_release_v1.0_mogen) 
+The dataset can be downloaded from [OpenXLab Link](https://openxlab.org.cn/datasets/OpenXDLab/HuMMan/tree/main/humman_release_v1.0_mogen):
+- SMPL parameters and annotations (~300 MB)
+- Visualization videos (optional, ~8.8 GB)
 
 
 ### Data Structure
@@ -17,7 +20,7 @@ Please download the .zip files and place in the same directory, note that you ma
 ```text
 humman_release_v1.0_mogen/   
 ├── data.zip
-└── visualizations.zip
+└── visualizations.zip (optional)
 ```
 Then decompress them:
 ```bash
@@ -99,7 +102,8 @@ with open('/path/to/xxxxxx.json', 'r') as f:
 ```
 
 ### Visualization
-We provide a simple 3D visualization tool for SMPL mesh models.
+The visualized videos (`visualizations.zip`) of SMPL mesh models can be directly downloaded.
+In case you'd like to run it yourself, we also provide the simple 3D visualization tool. 
 
 #### Installation
 The tool does not require specific version of dependency packages. 

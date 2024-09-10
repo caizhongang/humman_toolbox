@@ -4,7 +4,19 @@ HuMMan v1.0: 3D Vision Subset (HuMMan-Point) consists of 340 subjects, 247 actio
 Color videos, depth images, masks (computed with background), SMPL parameters, and camera 
 parameters are provided. It is worth noting that data captured with a mobile sensor (iPhone)
 are also included. This subset is ideal for 3D vision researchers to study dynamic humans
-with commercial depth sensors.  
+with commercial RGB-D sensors.  
+
+### Installation
+To use our visulization tools, relevant python packages need to be installed.
+```bash
+conda create -n humman python=3.9 -y
+conda activate humman
+pip install torch==1.12.1 opencv-python==4.10.0.84 smplx==0.1.28 chumpy==0.70 trimesh==4.4.3 tqdm==4.66.4 open3d==0.14.1 numpy==1.23.1
+```
+It is also highly recommended to install `openxlab` package to facilitate file downloading.
+```bash
+pip install openxlab
+```
 
 ### Downloads
 

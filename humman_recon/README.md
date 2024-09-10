@@ -7,6 +7,18 @@ appearance and expressive actions. Moreover, it unleashes the potential to
 benchmark reconstruction algorithms under realistic settings with commercial 
 sensors, dynamic subjects, and computer vision-powered automatic annotations.
 
+### Installation
+To use our visulization tools, relevant python packages need to be installed.
+```bash
+conda create -n humman python=3.9 -y
+conda activate humman
+pip install torch==1.12.1 opencv-python==4.10.0.84 smplx==0.1.28 chumpy==0.70 trimesh==4.4.3 tqdm==4.66.4 open3d==0.14.1 numpy==1.23.1
+```
+It is also highly recommended to install `openxlab` package to facilitate file downloading.
+```bash
+pip install openxlab
+```
+
 ### Downloads
 
 #### Option 1: OpenXLab
@@ -252,17 +264,6 @@ point_cloud = np.array(open3d_point_cloud.points)
 ### Visualization
 We provide a simple 2D visualization tool for color images, masks, and SMPL vertices,
 and a simple 3D visualization tool for point clouds (from depth images) and SMPL mesh models.
-
-#### Installation
-The tool does not require specific version of dependency packages. 
-The following is for reference only. 
-```bash
-conda create -n humman python=3.8 -y
-conda activate humman
-conda install pytorch==1.12.1 torchvision==0.13.1 torchaudio==0.12.1 cudatoolkit=11.6 -c pytorch -c conda-forge -y
-pip install opencv-python smplx chumpy trimesh
-pip install open3d  # additional package for 3D visualization
-```
 
 #### Run 2D Visualizer
 ```bash
