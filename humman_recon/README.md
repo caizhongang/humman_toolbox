@@ -303,8 +303,8 @@ python tools/visualizer_3d.py <root_dir> <seq_name> <kinect_id> <frame_id> \
 - seq_name (str): sequence name, in the format 'pxxxxxx_axxxxxx'.
 - kinect_id (int): Kinect ID. Available range is [0, 9].
 - frame_id (int): frame ID. Available range varies for different sequences.
-- visualize_smpl (bool, optional): whether to visualize SMPL 3D mesh model.
-- smpl_model_path (str, optional): directory in which SMPL body models are stored.
+- visualize_smpl (flag): whether to visualize SMPL 3D mesh model.
+- smpl_model_path (str, optional): directory in which SMPL body models are stored. Defaults to /home/user/body_models/.
 
 Example:
 ```bash
