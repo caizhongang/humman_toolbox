@@ -401,7 +401,7 @@ if __name__ == '__main__':
     parser.add_argument('--visualize_smpl', action='store_true',
                         help='whether to visualize SMPL 3D mesh model.')
     parser.add_argument('--smpl_model_path',
-                        default='/home/user/mmhuman3d/data/body_models',
+                        default='/home/user/body_models',
                         help="directory in which SMPL body models are stored.")
     args = parser.parse_args()
 

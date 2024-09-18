@@ -23,12 +23,12 @@ pip install openxlab
 HuMMan-Point is currently hosted on [OpenXLab](https://openxlab.org.cn/datasets/OpenXDLab/HuMMan/tree/main/humman_release_v1.0_point).
 We recommend download files using [CLI tools](https://openxlab.org.cn/datasets/OpenXDLab/HuMMan/cli/main):
 ```bash
-openxlab dataset download --dataset-repo OpenXDLab/HuMMan --source-path /humman_release_v1.0_point --target-path /home/user/humman_release_v1.0_point
+openxlab dataset download --dataset-repo OpenXDLab/HuMMan --source-path /humman_release_v1.0_point --target-path /home/user/
 ```
 
 You can selectively download files that you need, for example:
 ```bash
-openxlab dataset download --dataset-repo OpenXDLab/HuMMan --source-path /humman_release_v1.0_point/iphone_color.7z --target-path /home/user/humman_release_v1.0_point/iphone_color.7z
+openxlab dataset download --dataset-repo OpenXDLab/HuMMan --source-path /humman_release_v1.0_point/iphone_color.7z --target-path /home/user/humman_release_v1.0_point/
 ```
 
 ### Data Structure
@@ -265,26 +265,26 @@ We provide a simple 3D visualization tool for point clouds (from depth images) a
 
 #### Run RGB-D Visualizer
 ```bash
-python tools/visualizer_rgbd <root_dir> <seq_name> <device_name> [frame_id] \
+python tools/visualizer_rgbd.py <root_dir> <seq_name> <device_name> [frame_id] \
   [virtual_cam] [video_save_path] [--visualize_smpl] [--smpl_model_path]
 ```
 - root_dir (str): root directory in which data is stored.
 - seq_name (str): sequence name, in the format 'pxxxxxx_axxxxxx'.
 - device_name (str): device name. 'kinect_000' to 'kinect_009' or 'iphone'.
 - frame_id (int): frame ID. If not specified, the entire video will be visualized.
-- virtual_cam (str): virtual camera pose. Required for visualizing the entire video.
-- video_save_path (str): path to save the visualization video. If not specified, it will be ./{seq_name}-{device_name}.mp4
-- visualize_smpl (bool, optional): whether to visualize SMPL 3D mesh model.
-- smpl_model_path (str, optional): directory in which SMPL body models are stored.
+- virtual_cam (str, optional): virtual camera pose. Required for visualizing the entire video. Defaults to assets/virtual_cam.json.
+- video_save_path (str, optional): path to save the visualization video. If not specified, it will be ./{seq_name}-{device_name}.mp4
+- visualize_smpl (flag): whether to visualize SMPL 3D mesh model. 
+- smpl_model_path (str, optional): directory in which SMPL body models are stored. Defaults to /home/user/body_models/.
 
 Example 1: use the interactive visualizer to visualize frame '0' of 'kinect_000':
 ```bash
-python tools/visualizer_rgbd /home/user/humman_release_v1.0_point p001110_a001425 kinect_000 --frame_id 0 
+python tools/visualizer_rgbd.py /home/user/humman_release_v1.0_point p001110_a001425 kinect_000 --frame_id 0 
 ```
 
 Example 2: use the sequence visualizer to visualize the entire 'iphone' video:
 ```bash
-python tools/visualizer_rgbd /home/user/humman_release_v1.0_point p001110_a001425 iphone --virtual_cam assets/virtual_cam_iphone.json 
+python tools/visualizer_rgbd.py /home/user/humman_release_v1.0_point p001110_a001425 iphone --virtual_cam assets/virtual_cam_iphone.json 
 ```
 
 
@@ -294,5 +294,4 @@ body_models/
 └── smpl/  
     └── SMPL_NEUTRAL.pkl
 ```
-`SMPL_NEUTRAL.pkl` may be downloaded from [here](https://github.com/classner/up/blob/master/models/3D/basicModel_neutral_lbs_10_207_0_v1.0.0.pkl). 
-Renaming from `basicModel_neutral_lbs_10_207_0_v1.0.0.pkl` to `SMPL_NEUTRAL.pkl` is needed.
+`SMPL_NEUTRAL.pkl` may be downloaded from the [official website](https://smpl.is.tue.mpg.de/). 

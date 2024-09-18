@@ -137,9 +137,9 @@ python tools/visualizer_3d.py <root_dir> <seq_name> <video_dir> [--draw_ground] 
 - root_dir (str): root directory in which smpl sequences (.npz) are stored.
 - seq_name (str): sequence name, in the format 'pxxxxxx_axxxxxx' or 'pxxxxxx_rxxxxxx'. Input '*' to visualize all sequences under the root directory. 
 - video_dir (str): directory to save rendered videos.
-- draw_ground (bool, optional): whether to visualize a ground plane.
-- draw_axis (bool, optional): whether to visualize the xyz axis.
-- smpl_model_path (str, optional): directory in which SMPL body models are stored. You can download from the [official website](https://smpl.is.tue.mpg.de/).
+- draw_ground (flag): whether to visualize a ground plane.
+- draw_axis (flag): whether to visualize the xyz axis.
+- smpl_model_path (str, optional): directory in which SMPL body models are stored. Defaults to /home/user/body_models/.
 
 Example:
 ```bash
@@ -147,7 +147,8 @@ python tools/visualizer_3d.py /home/user/humman_release_v1.0_mogen/smpl_on_groun
   --draw_ground --draw_axis --smpl_model_path /home/user/body_models/
 ```
 
-Example of SMPL body model directory (smpl neutral model is used in our 3D Visualizer):
+Example of SMPL body model directory (smpl neutral model is used in our 3D Visualizer).
+You can download the body models from the [official website](https://smpl.is.tue.mpg.de/).
 ```text
 body_models/
 ├── smpl

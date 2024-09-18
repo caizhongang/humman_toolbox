@@ -26,12 +26,12 @@ pip install openxlab
 HuMMan-Recon is currently hosted on [OpenXLab](https://openxlab.org.cn/datasets/OpenXDLab/HuMMan/tree/main/humman_release_v1.0_recon).
 We recommend download files using [CLI tools](https://openxlab.org.cn/datasets/OpenXDLab/HuMMan/cli/main):
 ```bash
-openxlab dataset download --dataset-repo OpenXDLab/HuMMan --source-path /humman_release_v1.0_recon --target-path /home/user/humman_release_v1.0_point
+openxlab dataset download --dataset-repo OpenXDLab/HuMMan --source-path /humman_release_v1.0_recon --target-path /home/user/
 ```
 
 You can selectively download files that you need, for example:
 ```bash
-openxlab dataset download --dataset-repo OpenXDLab/HuMMan --source-path /humman_release_v1.0_recon/recon_kinect_color_part_1.zip --target-path /home/user/humman_release_v1.0_point/recon_kinect_color_part_1.zip
+openxlab dataset download --dataset-repo OpenXDLab/HuMMan --source-path /humman_release_v1.0_recon/recon_kinect_color_part_1.zip --target-path /home/user/humman_release_v1.0_recon
 ```
 
 #### Option 2: OneDrive
@@ -267,21 +267,21 @@ and a simple 3D visualization tool for point clouds (from depth images) and SMPL
 
 #### Run 2D Visualizer
 ```bash
-python tools/visualizer <root_dir> <seq_name> <kinect_id> <frame_id> \
+python tools/visualizer.py <root_dir> <seq_name> <kinect_id> <frame_id> \
   [--visualize_mask] [--visualize_smpl] [--smpl_model_path]
 ```
 - root_dir (str): root directory in which data is stored.
 - seq_name (str): sequence name, in the format 'pxxxxxx_axxxxxx'.
 - kinect_id (int): Kinect ID. Available range is [0, 9].
 - frame_id (int): frame ID. Available range varies for different sequences.
-- visualize_mask (bool, optional): whether to overlay mask on color image. Defaults to False.
-- visualize_mask_manual (bool, optional): whether to overlay manually annotated mask on color image. Defaults to False.
-- visualize_smpl (bool, optional): whether to overlay SMPL vertices on color image. Defaults to False.
-- smpl_model_path (str, optional): directory in which SMPL body models are stored.
+- visualize_mask (flag): whether to overlay mask on color image.
+- visualize_mask_manual (flag): whether to overlay manually annotated mask on color image.
+- visualize_smpl (flag): whether to overlay SMPL vertices on color image.
+- smpl_model_path (str, optional): directory in which SMPL body models are stored. Defaults to /home/user/body_models/.
 
 Example:
 ```bash
-python tools/visualizer /home/user/humman_release_v1.0_recon p000455_a000986 0 0 \
+python tools/visualizer.py /home/user/humman_release_v1.0_recon p000455_a000986 0 0 \
   --visualize_mask_manual --visualize_smpl --smpl_model_path /home/user/body_models/
 ```
 
@@ -291,13 +291,12 @@ body_models/
 └── smpl/  
     └── SMPL_NEUTRAL.pkl
 ```
-`SMPL_NEUTRAL.pkl` may be downloaded from [here](https://github.com/classner/up/blob/master/models/3D/basicModel_neutral_lbs_10_207_0_v1.0.0.pkl). 
-Renaming from `basicModel_neutral_lbs_10_207_0_v1.0.0.pkl` to `SMPL_NEUTRAL.pkl` is needed.
+`SMPL_NEUTRAL.pkl` may be downloaded from the [official website](https://smpl.is.tue.mpg.de/). 
 
 
 #### Run 3D Visualizer
 ```bash
-python tools/visualizer_3d <root_dir> <seq_name> <kinect_id> <frame_id> \
+python tools/visualizer_3d.py <root_dir> <seq_name> <kinect_id> <frame_id> \
   [--visualize_smpl] [--smpl_model_path]
 ```
 - root_dir (str): root directory in which data is stored.
@@ -309,7 +308,7 @@ python tools/visualizer_3d <root_dir> <seq_name> <kinect_id> <frame_id> \
 
 Example:
 ```bash
-python tools/visualizer_3d /home/user/humman_release_v1.0_recon p000455_a000986 0 0 \
+python tools/visualizer_3d.py /home/user/humman_release_v1.0_recon p000455_a000986 0 0 \
   --visualize_smpl --smpl_model_path /home/user/body_models/
 ```
 
