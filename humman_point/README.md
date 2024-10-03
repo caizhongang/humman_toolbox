@@ -57,7 +57,7 @@ humman_release_v1.0_recon/
 ```
 Then decompress them:
 ```bash
-7z x *.7z
+7z x "*.7z"
 ```
 The file structure should look like this:
 ```text
