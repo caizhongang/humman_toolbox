@@ -3,6 +3,7 @@
 Please visit our [Homepage](https://caizhongang.github.io/projects/HuMMan/) for more details.      
 
 ## Updates
+- [2024-10-02] HuMMan is now available on [HuggingFace](https://huggingface.co/datasets/caizhongang/HuMMan)!
 - [2024-09-10] Release of HuMMan v1.0: Motion Generation Subset (HuMMan-MoGen)
 - [2024-08-29] Release of HuMMan v1.0: 3D Vision Subset (HuMMan-Point)
 - [2024-08-29] We have changed our data host! All download instructions have been updated

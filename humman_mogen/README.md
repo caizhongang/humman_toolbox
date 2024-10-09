@@ -10,9 +10,15 @@ Please see our [demo video](https://youtu.be/xYgii9vqG08) for a few examples.
 
 ### Downloads
 
-The dataset can be downloaded from [OpenXLab](https://openxlab.org.cn/datasets/OpenXDLab/HuMMan/tree/main/humman_release_v1.0_mogen):
+Files in HuMMan-Mogen:
 - SMPL parameters and annotations (~300 MB)
 - Visualization videos (optional, ~8.8 GB)
+
+#### Option 1: OpenXLab
+The dataset can be downloaded from [OpenXLab](https://openxlab.org.cn/datasets/OpenXDLab/HuMMan/tree/main/humman_release_v1.0_mogen).
+
+#### Option 2: Hugging Face
+The dataset can also be download from [Hugging Face](https://huggingface.co/datasets/caizhongang/HuMMan/tree/main/humman_release_v1.0_mogen).
 
 
 ### Data Structure

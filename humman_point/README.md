@@ -20,6 +20,8 @@ pip install openxlab
 
 ### Downloads
 
+#### Option 1: OpenXLab
+
 HuMMan-Point is currently hosted on [OpenXLab](https://openxlab.org.cn/datasets/OpenXDLab/HuMMan/tree/main/humman_release_v1.0_point).
 We recommend download files using [CLI tools](https://openxlab.org.cn/datasets/OpenXDLab/HuMMan/cli/main):
 ```bash
@@ -28,8 +30,31 @@ openxlab dataset download --dataset-repo OpenXDLab/HuMMan --source-path /humman_
 
 You can selectively download files that you need, for example:
 ```bash
-openxlab dataset download --dataset-repo OpenXDLab/HuMMan --source-path /humman_release_v1.0_point/iphone_color.7z --target-path /home/user/humman_release_v1.0_point/
+openxlab dataset download --dataset-repo OpenXDLab/HuMMan --source-path /humman_release_v1.0_point/point_iphone_color.7z --target-path /home/user/humman_release_v1.0_point/
 ```
+
+#### Option 2: Hugging Face
+
+HuMMan-Point is also hosted on [Hugging Face](https://huggingface.co/datasets/caizhongang/HuMMan/tree/main/humman_release_v1.0_point).
+Hugging Face uses `git-lfs` to manage large files.
+
+Please make sure you have [git-lfs](https://git-lfs.com) installed. Then, follow the instructions below:
+```bash
+git lfs install
+GIT_LFS_SKIP_SMUDGE=1 git clone https://huggingface.co/datasets/caizhongang/HuMMan  # do not pull any large files yet
+cd HuMMan
+```
+
+You may pull all files in HuMMan-Point:
+```
+git lfs pull --include "humman_release_v1.0_point/*"
+```
+
+Similarly, you can also selectively download files that you need, for example:
+```bash
+git lfs pull --include "humman_release_v1.0_point/point_iphone_color.7z"
+```
+
 
 ### Data Structure
 Please download the `.7z` files and place in the same directory, note that you may not need all files.

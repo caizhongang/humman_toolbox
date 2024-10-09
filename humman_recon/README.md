@@ -34,11 +34,36 @@ You can selectively download files that you need, for example:
 openxlab dataset download --dataset-repo OpenXDLab/HuMMan --source-path /humman_release_v1.0_recon/recon_kinect_color_part_1.zip --target-path /home/user/humman_release_v1.0_recon
 ```
 
-#### Option 2: OneDrive
+#### Option 2: Hugging Face
+
+HuMMan-Recon is also hosted on [Hugging Face](https://huggingface.co/datasets/caizhongang/HuMMan/tree/main/humman_release_v1.0_recon).
+Hugging Face uses `git-lfs` to manage large files.
+
+Please make sure you have [git-lfs](https://git-lfs.com) installed. Then, follow the instructions below:
+```bash
+git lfs install
+GIT_LFS_SKIP_SMUDGE=1 git clone https://huggingface.co/datasets/caizhongang/HuMMan  # do not pull any large files yet
+cd HuMMan
+```
+
+You may pull all files in HuMMan-Recon:
+```
+git lfs pull --include "humman_release_v1.0_recon/*"
+```
+
+Similarly, you can also selectively download files that you need, for example:
+```bash
+git lfs pull --include "humman_release_v1.0_recon/recon_iphone_color.7z"
+```
+
+#### Option 3: OneDrive
 
 We have backed-up all files on OneDrive (except for depth images).
 
 Color images:
+
+Note that the 3 parts downloaded from OneDrive is the same to 13 parts downloaded from other data hosts.
+
 - Part 1: [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/Ed6CM2tKVmRGiqcCyIcd4rABYy8kcf_tIbDU4nmuM4Zi1Q?e=yrC0pT) 
 (~84 GB)
 - Part 2: [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/EY1aLq6U9ppJsYuMy_y30yABGhrepLtgk4KQ_9Xl_O3heQ?e=7cTTvM) 
@@ -78,6 +103,16 @@ humman_release_v1.0_recon/
 ├── recon_kinect_color_part_1.zip
 ├── recon_kinect_color_part_2.zip
 ├── recon_kinect_color_part_3.zip
+├── recon_kinect_color_part_4.zip
+├── recon_kinect_color_part_5.zip
+├── recon_kinect_color_part_6.zip
+├── recon_kinect_color_part_7.zip
+├── recon_kinect_color_part_8.zip
+├── recon_kinect_color_part_9.zip
+├── recon_kinect_color_part_10.zip
+├── recon_kinect_color_part_11.zip
+├── recon_kinect_color_part_12.zip
+├── recon_kinect_color_part_13.zip
 ├── recon_kinect_mask_manual.zip
 ├── recon_kinect_mask.zip
 ├── recon_smpl_params.zip 
