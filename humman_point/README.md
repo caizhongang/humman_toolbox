@@ -6,6 +6,9 @@ parameters are provided. It is worth noting that data captured with a mobile sen
 are also included. This subset is ideal for 3D vision researchers to study dynamic humans
 with commercial RGB-D sensors.  
 
+Useful links:
+- Action set definition: [link](https://docs.google.com/spreadsheets/d/1-DoRVZskJgYo8SFxZs6qkzdsrppF9W09md8U6YpBHsk/edit?usp=sharing)
+
 ### Installation
 To use our visulization tools, relevant python packages need to be installed.
 ```bash
