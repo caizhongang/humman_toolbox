@@ -7,6 +7,10 @@ appearance and expressive actions. Moreover, it unleashes the potential to
 benchmark reconstruction algorithms under realistic settings with commercial 
 sensors, dynamic subjects, and computer vision-powered automatic annotations.
 
+- Suggested splits:
+[train](https://caizhongang.github.io/projects/HuMMan/splits/train.txt) and
+[test](https://caizhongang.github.io/projects/HuMMan/splits/test.txt).
+
 ### Installation
 To use our visulization tools, relevant python packages need to be installed.
 ```bash
@@ -90,11 +94,6 @@ Camera parameters (world2cam):
 Textured meshes: 
 [OneDrive(CN)](https://pjlab-my.sharepoint.cn/:u:/g/personal/openmmlab_pjlab_org_cn/EYgbLNilus1Auut9N-qs5rkBZ-NuNYWG5ml-tRxTlgeohA?e=Sdaogm)
 (~22 GB)
-
-Suggested splits:
-[train](https://caizhongang.github.io/projects/HuMMan/splits/train.txt) and
-[test](https://caizhongang.github.io/projects/HuMMan/splits/test.txt).
-
 
 ### Data Structure
 Please download the .zip files and place in the same directory, note that you may not need all of them.
